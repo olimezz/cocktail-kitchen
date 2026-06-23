@@ -22,7 +22,10 @@
         <li><a href="#about">Chi Siamo</a></li>
         <li><a href="#contact">Contatti</a></li>
       </ul>
-      <a href="#contact" class="btn-primary nav-btn">Contattaci</a>
+      <div style="display: flex; gap: 1rem; align-items: center;" class="nav-btn">
+        <a href="#contact" class="btn-primary">Contattaci</a>
+        <button id="nav-download-menu-btn" class="btn-secondary">Scarica Menu</button>
+      </div>
       
       <!-- Mobile Menu Toggle -->
       <div class="menu-toggle" id="mobile-menu">
@@ -41,6 +44,7 @@
       <p class="hero-subtitle">Nel cuore di Pescara, a due passi dal mare. Pasta fresca fatta a mano, piatti creativi e un'atmosfera indimenticabile.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn-primary">Contattaci</a>
+        <button id="hero-download-menu-btn" class="btn-secondary">Scarica Menu</button>
       </div>
     </div>
   </header>
@@ -215,6 +219,23 @@
       <p>&copy; 2026 Cocktail Kitchen. Tutti i diritti riservati. <br> Sito web ridisegnato per massimizzare l'eleganza e le conversioni.</p>
     </div>
   </footer>
+
+  <!-- Download Menu Modal -->
+  <div id="download-modal" class="modal-overlay">
+    <div class="modal-content glass-card">
+      <span class="close-modal" id="close-modal">&times;</span>
+      <h2 style="margin-bottom: 0.5rem;">Scarica i nostri Menu</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Scegli il menu che desideri scaricare:</p>
+      <div class="menu-download-buttons">
+        <a href="assets/images/aperitivo%20cenato.jpeg" download class="btn-secondary full-width">Aperitivo Cenato</a>
+        <a href="assets/images/aperitivo%20di%20terra.jpeg" download class="btn-secondary full-width">Aperitivo di Terra</a>
+        <a href="assets/images/fish%20night.jpeg" download class="btn-secondary full-width">Fish Night</a>
+        <a href="assets/images/menu%20cocktails.jpeg" download class="btn-secondary full-width">Menu Cocktails</a>
+        <a href="assets/images/menu'%20estivo.jpeg" download class="btn-secondary full-width">Menu Estivo</a>
+        <a href="assets/images/menu'%20pranzo.jpeg" download class="btn-secondary full-width">Menu Pranzo</a>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>

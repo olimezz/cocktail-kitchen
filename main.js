@@ -99,4 +99,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Download Menu Modal Logic
+  const navDownloadBtn = document.getElementById('nav-download-menu-btn');
+  const heroDownloadBtn = document.getElementById('hero-download-menu-btn');
+  const downloadModal = document.getElementById('download-modal');
+  const closeModal = document.getElementById('close-modal');
+
+  const openModal = (e) => {
+    e.preventDefault();
+    downloadModal.classList.add('active');
+  };
+
+  if (navDownloadBtn) navDownloadBtn.addEventListener('click', openModal);
+  if (heroDownloadBtn) heroDownloadBtn.addEventListener('click', openModal);
+
+  if (closeModal) {
+    closeModal.addEventListener('click', () => {
+      downloadModal.classList.remove('active');
+    });
+  }
+
+  window.addEventListener('click', (e) => {
+    if (e.target === downloadModal) {
+      downloadModal.classList.remove('active');
+    }
+  });
+
 });
