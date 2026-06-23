@@ -107,14 +107,71 @@
                 <label for="book-name">Nome</label>
                 <input type="text" id="book-name" required placeholder="Es. Mario Rossi">
               </div>
+              <div class="form-group">
+                <label for="book-day">Giorno</label>
+                <select id="book-day" required>
+                  <option value="" disabled selected>Scegli il giorno</option>
+                  <option value="Mercoledì">Mercoledì</option>
+                  <option value="Giovedì">Giovedì</option>
+                  <option value="Venerdì">Venerdì</option>
+                  <option value="Sabato">Sabato</option>
+                  <option value="Domenica">Domenica</option>
+                </select>
+              </div>
               <div class="form-row-booking">
                 <div class="form-group">
                   <label for="book-people">N° Persone</label>
-                  <input type="number" id="book-people" min="1" max="20" required placeholder="2">
+                  <select id="book-people" required>
+                    <option value="" disabled selected>Scegli</option>
+                    <option value="1">1 Persona</option>
+                    <option value="2">2 Persone</option>
+                    <option value="3">3 Persone</option>
+                    <option value="4">4 Persone</option>
+                    <option value="5">5 Persone</option>
+                    <option value="6">6 Persone</option>
+                    <option value="7">7 Persone</option>
+                    <option value="8">8 Persone</option>
+                    <option value="9">9 Persone</option>
+                    <option value="10">10 Persone</option>
+                    <option value="11">11 Persone</option>
+                    <option value="12">12 Persone</option>
+                    <option value="13">13 Persone</option>
+                    <option value="14">14 Persone</option>
+                    <option value="15">15 Persone</option>
+                    <option value="16">16 Persone</option>
+                    <option value="17">17 Persone</option>
+                    <option value="18">18 Persone</option>
+                    <option value="19">19 Persone</option>
+                    <option value="20">20 Persone</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="book-time">Orario</label>
-                  <input type="time" id="book-time" required>
+                  <select id="book-time" required>
+                    <option value="" disabled selected>Scegli</option>
+                    <optgroup label="Pranzo">
+                      <option value="12:00">12:00</option>
+                      <option value="12:30">12:30</option>
+                      <option value="13:00">13:00</option>
+                      <option value="13:30">13:30</option>
+                      <option value="14:00">14:00</option>
+                      <option value="14:30">14:30</option>
+                      <option value="15:00">15:00</option>
+                    </optgroup>
+                    <optgroup label="Cena">
+                      <option value="18:00">18:00</option>
+                      <option value="18:30">18:30</option>
+                      <option value="19:00">19:00</option>
+                      <option value="19:30">19:30</option>
+                      <option value="20:00">20:00</option>
+                      <option value="20:30">20:30</option>
+                      <option value="21:00">21:00</option>
+                      <option value="21:30">21:30</option>
+                      <option value="22:00">22:00</option>
+                      <option value="22:30">22:30</option>
+                      <option value="23:00">23:00</option>
+                    </optgroup>
+                  </select>
                 </div>
               </div>
               <button type="submit" class="btn-whatsapp">

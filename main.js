@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth'
         });
       }
+    });
   });
-
   // Booking Dropdown Toggle
   const bookingToggle = document.getElementById('booking-toggle');
   const bookingDropdown = document.getElementById('booking-dropdown');
@@ -81,10 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       
       const name = document.getElementById('book-name').value;
+      const day = document.getElementById('book-day').value;
       const people = document.getElementById('book-people').value;
       const time = document.getElementById('book-time').value;
       
-      const message = `Ciao Cocktail Kitchen! Vorrei prenotare un tavolo.\n\n👤 Nome: ${name}\n👥 Persone: ${people}\n🕒 Orario: ${time}`;
+      const message = `Ciao Cocktail Kitchen! Vorrei prenotare un tavolo.\n\n👤 Nome: ${name}\n📅 Giorno: ${day}\n👥 Persone: ${people}\n🕒 Orario: ${time}`;
       const encodedMessage = encodeURIComponent(message);
       
       const whatsappUrl = `https://wa.me/393513798648?text=${encodedMessage}`;
