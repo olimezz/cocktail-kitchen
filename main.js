@@ -171,4 +171,116 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Cookie Consent Logic
+  const cookieBanner = document.getElementById('cookie-banner');
+  const btnAcceptAll = document.getElementById('cookie-accept-all');
+  const btnRejectAll = document.getElementById('cookie-reject-all');
+  const btnCustomize = document.getElementById('cookie-customize');
+  
+  const cookieModal = document.getElementById('cookie-modal');
+  const btnCloseCookieModal = document.getElementById('close-cookie-modal');
+  const btnSavePrefs = document.getElementById('cookie-save-prefs');
+  const toggleThirdParty = document.getElementById('cookie-third-party');
+  const openCookieSettings = document.getElementById('open-cookie-settings');
+  
+  const mapPlaceholder = document.getElementById('map-placeholder');
+  const mapIframe = document.getElementById('google-maps-iframe');
+  const btnAcceptMap = document.getElementById('btn-accept-map');
+
+  const CONSENT_KEY = 'cookie_consent_v1';
+
+  function initCookieConsent() {
+    const savedConsent = localStorage.getItem(CONSENT_KEY);
+    
+    if (!savedConsent) {
+      // Show banner if no consent
+      if (cookieBanner) cookieBanner.style.display = 'flex';
+    } else {
+      const consentObj = JSON.parse(savedConsent);
+      applyConsent(consentObj);
+    }
+  }
+
+  function applyConsent(consentObj) {
+    if (consentObj.thirdParty) {
+      loadGoogleMaps();
+    }
+  }
+
+  function saveConsent(thirdPartyAllowed) {
+    const consentObj = {
+      technical: true,
+      thirdParty: thirdPartyAllowed,
+      timestamp: new Date().toISOString()
+    };
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consentObj));
+    if (cookieBanner) cookieBanner.style.display = 'none';
+    if (cookieModal) cookieModal.classList.remove('active');
+    applyConsent(consentObj);
+  }
+
+  function loadGoogleMaps() {
+    if (mapIframe && mapIframe.dataset.src && !mapIframe.src) {
+      mapIframe.src = mapIframe.dataset.src;
+      mapIframe.classList.add('loaded');
+      if (mapPlaceholder) mapPlaceholder.classList.add('hidden');
+    }
+  }
+
+  // Event Listeners for Banner
+  if (btnAcceptAll) {
+    btnAcceptAll.addEventListener('click', () => saveConsent(true));
+  }
+  
+  if (btnRejectAll) {
+    btnRejectAll.addEventListener('click', () => saveConsent(false));
+  }
+
+  if (btnCustomize) {
+    btnCustomize.addEventListener('click', () => {
+      if (cookieBanner) cookieBanner.style.display = 'none';
+      if (cookieModal) cookieModal.classList.add('active');
+      // Set current state
+      const saved = localStorage.getItem(CONSENT_KEY);
+      if (saved && toggleThirdParty) {
+        toggleThirdParty.checked = JSON.parse(saved).thirdParty;
+      }
+    });
+  }
+
+  // Event Listeners for Modal
+  if (btnCloseCookieModal) {
+    btnCloseCookieModal.addEventListener('click', () => {
+      if (cookieModal) cookieModal.classList.remove('active');
+      const saved = localStorage.getItem(CONSENT_KEY);
+      if (!saved && cookieBanner) cookieBanner.style.display = 'flex';
+    });
+  }
+
+  if (btnSavePrefs) {
+    btnSavePrefs.addEventListener('click', () => {
+      saveConsent(toggleThirdParty ? toggleThirdParty.checked : false);
+    });
+  }
+
+  if (openCookieSettings) {
+    openCookieSettings.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (cookieModal) cookieModal.classList.add('active');
+      const saved = localStorage.getItem(CONSENT_KEY);
+      if (saved && toggleThirdParty) {
+        toggleThirdParty.checked = JSON.parse(saved).thirdParty;
+      }
+    });
+  }
+
+  if (btnAcceptMap) {
+    btnAcceptMap.addEventListener('click', () => {
+      saveConsent(true); // User accepts third party to see the map
+    });
+  }
+
+  initCookieConsent();
+
 });
+

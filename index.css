@@ -695,3 +695,165 @@ a {
   background: var(--accent);
   transform: scale(1.2);
 }
+
+/* Cookie Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  padding: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+@media (min-width: 768px) {
+  .cookie-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cookie-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.cookie-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.cookie-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Cookie Preferences */
+.cookie-modal-content {
+  text-align: left;
+}
+
+.cookie-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cookie-option:last-of-type {
+  border-bottom: none;
+}
+
+.cookie-info {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.cookie-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+/* Toggles */
+.cookie-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.cookie-toggle .toggle-label {
+  display: block;
+  width: 50px;
+  height: 26px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cookie-toggle input:checked + .toggle-label {
+  background-color: var(--accent);
+}
+
+.cookie-toggle input:disabled + .toggle-label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cookie-toggle .toggle-label::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.cookie-toggle input:checked + .toggle-label::after {
+  transform: translateX(24px);
+}
+
+/* Map Placeholder */
+.map-container {
+  position: relative;
+}
+
+.map-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--bg-surface);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  padding: 2rem;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.map-placeholder .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.map-placeholder p {
+  font-size: 1.1rem;
+}
+
+#google-maps-iframe {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#google-maps-iframe.loaded {
+  opacity: 1;
+}
+
+.map-placeholder.hidden {
+  display: none;
+}
