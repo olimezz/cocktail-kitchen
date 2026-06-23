@@ -193,6 +193,10 @@ a {
   transition: var(--transition);
 }
 
+.mobile-only-btn {
+  display: none;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -402,7 +406,7 @@ a {
     gap: 3rem;
   }
   
-  .form-row {
+  .form-row, .form-row-booking {
     grid-template-columns: 1fr;
   }
 }
@@ -410,6 +414,15 @@ a {
 @media (max-width: 768px) {
   .nav-links, .nav-btn {
     display: none;
+  }
+  
+  .mobile-only-btn {
+    display: block;
+    width: 100%;
+  }
+
+  .hero {
+    background-attachment: scroll;
   }
   
   .menu-toggle {
@@ -450,7 +463,7 @@ a {
 }
 
 .booking-dropdown.open {
-  max-height: 500px;
+  max-height: 800px;
   opacity: 1;
   padding: 1.5rem;
 }

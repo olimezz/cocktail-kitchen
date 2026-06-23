@@ -118,16 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // Download Menu Modal Logic
   const navDownloadBtn = document.getElementById('nav-download-menu-btn');
   const heroDownloadBtn = document.getElementById('hero-download-menu-btn');
+  const mobileDownloadBtn = document.getElementById('mobile-download-menu-btn');
   const downloadModal = document.getElementById('download-modal');
   const closeModal = document.getElementById('close-modal');
 
   const openModal = (e) => {
     e.preventDefault();
     downloadModal.classList.add('active');
+    
+    // Close mobile menu if it's open
+    if (navLinks && navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      const bars = mobileMenuBtn ? mobileMenuBtn.querySelectorAll('.bar') : [];
+      if (bars.length >= 3) {
+        bars[0].style.transform = 'none';
+        bars[1].style.opacity = '1';
+        bars[2].style.transform = 'none';
+      }
+    }
   };
 
   if (navDownloadBtn) navDownloadBtn.addEventListener('click', openModal);
   if (heroDownloadBtn) heroDownloadBtn.addEventListener('click', openModal);
+  if (mobileDownloadBtn) mobileDownloadBtn.addEventListener('click', openModal);
 
   if (closeModal) {
     closeModal.addEventListener('click', () => {
