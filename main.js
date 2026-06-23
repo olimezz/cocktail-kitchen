@@ -1,11 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Sticky Navbar
+  // Sticky Navbar & Navbar Action Buttons Visibility
   const navbar = document.getElementById('navbar');
+  const navActionBtns = document.getElementById('nav-action-btns');
+  const heroCta = document.querySelector('.hero-cta');
+
   window.addEventListener('scroll', () => {
+    // Sticky navbar
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+
+    // Toggle navbar action buttons visibility
+    if (heroCta && navActionBtns) {
+      const heroCtaBottom = heroCta.getBoundingClientRect().bottom;
+      const navbarHeight = navbar.offsetHeight || 80;
+      
+      if (heroCtaBottom < navbarHeight) {
+        navActionBtns.classList.add('visible');
+      } else {
+        navActionBtns.classList.remove('visible');
+      }
     }
   });
 

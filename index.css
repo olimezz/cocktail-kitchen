@@ -593,3 +593,17 @@ a {
 .menu-download-buttons .btn-secondary {
   text-align: center;
 }
+
+/* Navbar Action Buttons Visibility */
+#nav-action-btns {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#nav-action-btns.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
