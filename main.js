@@ -25,39 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      
-      // Animate hamburger icon
-      const bars = mobileMenuBtn.querySelectorAll('.bar');
-      if (navLinks.classList.contains('active')) {
-        bars[0].style.transform = 'translateY(8px) rotate(45deg)';
-        bars[1].style.opacity = '0';
-        bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-      } else {
-        bars[0].style.transform = 'none';
-        bars[1].style.opacity = '1';
-        bars[2].style.transform = 'none';
-      }
-    });
-  }
-
-  // Close mobile menu when clicking a link
-  const links = document.querySelectorAll('.nav-links a');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      const bars = mobileMenuBtn.querySelectorAll('.bar');
-      bars[0].style.transform = 'none';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = 'none';
-    });
-  });
 
   // Smooth Scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -118,29 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Download Menu Modal Logic
   const navDownloadBtn = document.getElementById('nav-download-menu-btn');
   const heroDownloadBtn = document.getElementById('hero-download-menu-btn');
-  const mobileDownloadBtn = document.getElementById('mobile-download-menu-btn');
   const downloadModal = document.getElementById('download-modal');
   const closeModal = document.getElementById('close-modal');
 
   const openModal = (e) => {
     e.preventDefault();
     downloadModal.classList.add('active');
-    
-    // Close mobile menu if it's open
-    if (navLinks && navLinks.classList.contains('active')) {
-      navLinks.classList.remove('active');
-      const bars = mobileMenuBtn ? mobileMenuBtn.querySelectorAll('.bar') : [];
-      if (bars.length >= 3) {
-        bars[0].style.transform = 'none';
-        bars[1].style.opacity = '1';
-        bars[2].style.transform = 'none';
-      }
-    }
   };
 
   if (navDownloadBtn) navDownloadBtn.addEventListener('click', openModal);
   if (heroDownloadBtn) heroDownloadBtn.addEventListener('click', openModal);
-  if (mobileDownloadBtn) mobileDownloadBtn.addEventListener('click', openModal);
 
   if (closeModal) {
     closeModal.addEventListener('click', () => {

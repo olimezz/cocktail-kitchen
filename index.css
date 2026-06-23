@@ -179,23 +179,7 @@ a {
   color: var(--accent);
 }
 
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-}
 
-.menu-toggle .bar {
-  width: 25px;
-  height: 2px;
-  background-color: #fff;
-  transition: var(--transition);
-}
-
-.mobile-only-btn {
-  display: none;
-}
 
 /* Hero Section */
 .hero {
@@ -412,52 +396,26 @@ a {
 }
 
 @media (max-width: 768px) {
-  .nav-btn, #nav-action-btns {
+  .nav-links {
     display: none !important;
-  }
-  
-  .mobile-only-btn {
-    display: block;
-    width: 100%;
   }
 
   .hero {
     background-attachment: scroll;
   }
   
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(10, 10, 12, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 0 2rem;
-    text-align: center;
-    border-bottom: var(--glass-border);
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    visibility: hidden;
-    transition: all 0.4s ease-in-out;
-    box-sizing: border-box;
-  }
-
-  .nav-links.active {
-    max-height: 600px;
-    opacity: 1;
-    padding: 2rem;
-    visibility: visible;
-  }
-  
   .hero-cta {
     flex-direction: column;
+  }
+  
+  #nav-action-btns {
+    gap: 0.5rem;
+  }
+  
+  #nav-action-btns .btn-primary,
+  #nav-action-btns .btn-secondary {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
 
