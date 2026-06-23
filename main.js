@@ -61,7 +61,41 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth'
         });
       }
-    });
   });
+
+  // Booking Dropdown Toggle
+  const bookingToggle = document.getElementById('booking-toggle');
+  const bookingDropdown = document.getElementById('booking-dropdown');
+  
+  if (bookingToggle && bookingDropdown) {
+    bookingToggle.addEventListener('click', () => {
+      bookingToggle.classList.toggle('open');
+      bookingDropdown.classList.toggle('open');
+    });
+  }
+
+  // Booking Form Submission (WhatsApp)
+  const bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('book-name').value;
+      const people = document.getElementById('book-people').value;
+      const time = document.getElementById('book-time').value;
+      
+      const message = `Ciao Cocktail Kitchen! Vorrei prenotare un tavolo.\n\n👤 Nome: ${name}\n👥 Persone: ${people}\n🕒 Orario: ${time}`;
+      const encodedMessage = encodeURIComponent(message);
+      
+      const whatsappUrl = `https://wa.me/393513798648?text=${encodedMessage}`;
+      
+      window.open(whatsappUrl, '_blank');
+      
+      // Reset form and close dropdown
+      bookingForm.reset();
+      bookingToggle.classList.remove('open');
+      bookingDropdown.classList.remove('open');
+    });
+  }
 
 });
