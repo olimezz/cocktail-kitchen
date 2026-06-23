@@ -193,7 +193,13 @@ a {
   background-image: url('assets/images/hero.webp');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero {
+    background-attachment: fixed;
+  }
 }
 
 .hero-overlay {
@@ -407,10 +413,6 @@ a {
 @media (max-width: 768px) {
   .nav-links {
     display: none !important;
-  }
-
-  .hero {
-    background-attachment: scroll;
   }
   
   .hero-cta {
