@@ -108,6 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Menu Accordion Logic
+  const accordionBtns = document.querySelectorAll('.menu-accordion-btn');
+  accordionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Close others (optional, but good for UX so it doesn't get too long)
+      accordionBtns.forEach(otherBtn => {
+        if (otherBtn !== btn && otherBtn.classList.contains('open')) {
+          otherBtn.classList.remove('open');
+          otherBtn.nextElementSibling.classList.remove('open');
+        }
+      });
+
+      // Toggle current
+      btn.classList.toggle('open');
+      const content = btn.nextElementSibling;
+      content.classList.toggle('open');
+    });
+  });
+
   // Carousel Logic
   const track = document.querySelector('.carousel-track');
   const slides = document.querySelectorAll('.carousel-track img');
@@ -171,52 +190,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Cookie Consent Logic
+  // ============================================================
+  // Cookie Consent Logic — GDPR / Garante Privacy Italiano
+  // Linee guida: Reg. UE 2016/679 (GDPR), Provvedimento Garante
+  // 8 gennaio 2015 e Linee Guida ePrivacy.
+  // ============================================================
   const cookieBanner = document.getElementById('cookie-banner');
   const btnAcceptAll = document.getElementById('cookie-accept-all');
   const btnRejectAll = document.getElementById('cookie-reject-all');
   const btnCustomize = document.getElementById('cookie-customize');
-  
+
   const cookieModal = document.getElementById('cookie-modal');
   const btnCloseCookieModal = document.getElementById('close-cookie-modal');
   const btnSavePrefs = document.getElementById('cookie-save-prefs');
+  const btnRejectModal = document.getElementById('cookie-reject-modal');
   const toggleThirdParty = document.getElementById('cookie-third-party');
   const openCookieSettings = document.getElementById('open-cookie-settings');
-  
+
   const mapPlaceholder = document.getElementById('map-placeholder');
   const mapIframe = document.getElementById('google-maps-iframe');
   const btnAcceptMap = document.getElementById('btn-accept-map');
 
   const CONSENT_KEY = 'cookie_consent_v1';
+  // Garante: richiedere nuovo consenso ogni 6 mesi
+  const CONSENT_EXPIRY_DAYS = 180;
+
+  function isConsentExpired(timestamp) {
+    if (!timestamp) return true;
+    const saved = new Date(timestamp);
+    const now = new Date();
+    const diffDays = (now - saved) / (1000 * 60 * 60 * 24);
+    return diffDays > CONSENT_EXPIRY_DAYS;
+  }
 
   function initCookieConsent() {
-    const savedConsent = localStorage.getItem(CONSENT_KEY);
-    
-    if (!savedConsent) {
-      // Show banner if no consent
-      if (cookieBanner) cookieBanner.style.display = 'flex';
-    } else {
-      const consentObj = JSON.parse(savedConsent);
-      applyConsent(consentObj);
+    const savedRaw = localStorage.getItem(CONSENT_KEY);
+    if (!savedRaw) {
+      // Nessun consenso — mostra il banner
+      showBanner();
+      return;
     }
+    const consentObj = JSON.parse(savedRaw);
+    // Scadenza 6 mesi — riaprire banner se scaduto
+    if (isConsentExpired(consentObj.timestamp)) {
+      localStorage.removeItem(CONSENT_KEY);
+      showBanner();
+      return;
+    }
+    applyConsent(consentObj);
+  }
+
+  function showBanner() {
+    if (cookieBanner) cookieBanner.style.display = 'flex';
   }
 
   function applyConsent(consentObj) {
     if (consentObj.thirdParty) {
+      loadGoogleFonts();
       loadGoogleMaps();
     }
   }
 
   function saveConsent(thirdPartyAllowed) {
     const consentObj = {
-      technical: true,
+      technical: true,      // sempre attivo per legge
       thirdParty: thirdPartyAllowed,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      version: '1.0'        // versione policy (aggiornare se cambia la policy)
     };
     localStorage.setItem(CONSENT_KEY, JSON.stringify(consentObj));
     if (cookieBanner) cookieBanner.style.display = 'none';
     if (cookieModal) cookieModal.classList.remove('active');
     applyConsent(consentObj);
+  }
+
+  // Carica Google Fonts SOLO con consenso (trasmette IP a Google)
+  function loadGoogleFonts() {
+    if (document.getElementById('google-fonts-loaded')) return; // già caricato
+    const link = document.createElement('link');
+    link.id = 'google-fonts-loaded';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap';
+    document.head.appendChild(link);
   }
 
   function loadGoogleMaps() {
@@ -227,20 +282,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Event Listeners for Banner
+  // --- Banner: Accetta Tutti ---
   if (btnAcceptAll) {
     btnAcceptAll.addEventListener('click', () => saveConsent(true));
   }
-  
+
+  // --- Banner: Rifiuta Non Necessari ---
   if (btnRejectAll) {
     btnRejectAll.addEventListener('click', () => saveConsent(false));
   }
 
+  // --- Banner: Personalizza → apri modale ---
   if (btnCustomize) {
     btnCustomize.addEventListener('click', () => {
       if (cookieBanner) cookieBanner.style.display = 'none';
       if (cookieModal) cookieModal.classList.add('active');
-      // Set current state
+      // Precompila lo stato corrente
       const saved = localStorage.getItem(CONSENT_KEY);
       if (saved && toggleThirdParty) {
         toggleThirdParty.checked = JSON.parse(saved).thirdParty;
@@ -248,21 +305,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Event Listeners for Modal
+  // --- Modale: X (chiudi senza salvare) ---
   if (btnCloseCookieModal) {
     btnCloseCookieModal.addEventListener('click', () => {
       if (cookieModal) cookieModal.classList.remove('active');
+      // Se non c'è ancora un consenso salvato, ri-mostra il banner
       const saved = localStorage.getItem(CONSENT_KEY);
       if (!saved && cookieBanner) cookieBanner.style.display = 'flex';
     });
   }
 
+  // --- Modale: Salva Preferenze ---
   if (btnSavePrefs) {
     btnSavePrefs.addEventListener('click', () => {
       saveConsent(toggleThirdParty ? toggleThirdParty.checked : false);
     });
   }
 
+  // --- Modale: Rifiuta Non Necessari ---
+  if (btnRejectModal) {
+    btnRejectModal.addEventListener('click', () => {
+      if (toggleThirdParty) toggleThirdParty.checked = false;
+      saveConsent(false);
+    });
+  }
+
+  // --- Footer: Gestisci Preferenze Cookie ---
   if (openCookieSettings) {
     openCookieSettings.addEventListener('click', (e) => {
       e.preventDefault();
@@ -274,9 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Mappa: Accetta e Mostra Mappa (consenso diretto) ---
   if (btnAcceptMap) {
     btnAcceptMap.addEventListener('click', () => {
-      saveConsent(true); // User accepts third party to see the map
+      saveConsent(true);
     });
   }
 

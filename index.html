@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cocktail Kitchen | Bistrot & Cocktail Bar a Pescara</title>
   <meta name="description" content="Cocktail Kitchen ti accoglie in Piazza della Rinascita a Pescara con pasta fresca, piatti creativi e una carta cocktail che sorprende ad ogni sorso.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Google Fonts caricati solo dopo consenso (GDPR) - vedi main.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" id="gfonts-preconnect" disabled>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin id="gfonts-preconnect2" disabled>
   <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/webp" href="assets/images/favicon.webp">
 </head>
@@ -25,7 +25,7 @@
       </ul>
       <div id="nav-action-btns" class="nav-btn">
         <a href="#contact" class="btn-primary">Contattaci</a>
-        <button id="nav-download-menu-btn" class="btn-secondary">Scarica Menu</button>
+        <button id="nav-download-menu-btn" class="btn-secondary">I Nostri Menu</button>
       </div>
     </div>
   </nav>
@@ -39,7 +39,7 @@
       <p class="hero-subtitle">Nel cuore di Pescara, a due passi dal mare. Pasta fresca fatta a mano, piatti creativi e un'atmosfera indimenticabile.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn-primary">Contattaci</a>
-        <button id="hero-download-menu-btn" class="btn-secondary">Scarica Menu</button>
+        <button id="hero-download-menu-btn" class="btn-secondary">I Nostri Menu</button>
       </div>
     </div>
   </header>
@@ -227,12 +227,13 @@
         <p>Il tuo angolo di gusto e relax a Pescara.</p>
       </div>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="https://www.instagram.com/cocktailkitchenpescara" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://www.facebook.com/cocktailkitchenpescara" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Cocktail Kitchen. Tutti i diritti riservati. <a href="#" style="text-decoration: underline;">Privacy & Cookie Policy</a> | <a href="#" id="open-cookie-settings" style="text-decoration: underline;">Impostazioni Cookie</a></p>
+      <p>&copy; 2026 Cocktail Kitchen – P.IVA [inserire P.IVA] – Piazza della Rinascita 40-41, 65122 Pescara</p>
+      <p style="margin-top: 0.5rem;"><a href="privacy-policy.html" style="text-decoration: underline;">Privacy Policy</a> | <a href="cookie-policy.html" style="text-decoration: underline;">Cookie Policy</a> | <a href="#" id="open-cookie-settings" style="text-decoration: underline;">Gestisci Preferenze Cookie</a></p>
     </div>
   </footer>
 
@@ -240,43 +241,74 @@
   <div id="download-modal" class="modal-overlay">
     <div class="modal-content glass-card">
       <span class="close-modal" id="close-modal">&times;</span>
-      <h2 style="margin-bottom: 0.5rem;">Scarica i nostri Menu</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Scegli il menu che desideri scaricare:</p>
-      <div class="menu-download-buttons">
-        <a href="assets/images/aperitivo%20cenato.webp" download class="btn-secondary full-width">Aperitivo Cenato</a>
-        <a href="assets/images/aperitivo%20di%20terra.webp" download class="btn-secondary full-width">Aperitivo di Terra</a>
-        <a href="assets/images/fish%20night.webp" download class="btn-secondary full-width">Fish Night</a>
-        <a href="assets/images/menu%20cocktails.webp" download class="btn-secondary full-width">Menu Cocktails</a>
-        <a href="assets/images/menu'%20estivo.webp" download class="btn-secondary full-width">Menu Estivo</a>
-        <a href="assets/images/menu'%20pranzo.webp" download class="btn-secondary full-width">Menu Pranzo</a>
+      <h2 style="margin-bottom: 0.5rem;">I nostri Menu</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Scegli il menu che desideri visualizzare:</p>
+      <div class="menu-accordion-container">
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Menu Estivo <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/menu'%20estivo.webp" alt="Menu Estivo" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Menu Cocktails <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/menu%20cocktails.webp" alt="Menu Cocktails" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Fish Night <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/fish%20night.webp" alt="Fish Night" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Aperitivo Cenato <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/aperitivo%20cenato.webp" alt="Aperitivo Cenato" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Aperitivo di Terra <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/aperitivo%20di%20terra.webp" alt="Aperitivo di Terra" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
+        <div class="menu-accordion-item">
+          <button class="btn-secondary full-width menu-accordion-btn">Set Lunch <span class="toggle-icon">▼</span></button>
+          <div class="menu-accordion-content">
+            <img src="assets/images/menu'%20pranzo.webp" alt="Set Lunch" class="menu-preview-img" loading="lazy">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner glass-card" style="display: none;">
+  <!-- Cookie Banner (GDPR / Garante Privacy Italiano conforme) -->
+  <div id="cookie-banner" class="cookie-banner glass-card" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title" style="display: none;">
     <div class="cookie-content">
-      <h3>Informativa sui Cookie</h3>
-      <p>Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito e offrirti funzionalità come le mappe interattive. Puoi scegliere quali categorie di cookie accettare.</p>
+      <h3 id="cookie-banner-title">Informativa sui Cookie</h3>
+      <p>Questo sito utilizza cookie tecnici (necessari al funzionamento) e cookie di terze parti (Google Maps, Google Fonts) che richiedono il tuo consenso. Il titolare del trattamento è Cocktail Kitchen, Piazza della Rinascita 40-41, Pescara. Puoi accettare, rifiutare o personalizzare le tue scelte. <a href="cookie-policy.html" style="color: var(--accent); text-decoration: underline;">Leggi la Cookie Policy</a>.</p>
     </div>
     <div class="cookie-buttons">
+      <button id="cookie-reject-all" class="btn-secondary">Rifiuta Non Necessari</button>
+      <button id="cookie-customize" class="btn-secondary">Personalizza</button>
       <button id="cookie-accept-all" class="btn-primary">Accetta Tutti</button>
-      <button id="cookie-reject-all" class="btn-secondary">Rifiuta</button>
-      <button id="cookie-customize" class="btn-secondary" style="border: none; text-decoration: underline;">Personalizza</button>
     </div>
   </div>
 
-  <!-- Cookie Preferences Modal -->
-  <div id="cookie-modal" class="modal-overlay">
+  <!-- Cookie Preferences Modal (GDPR conforme) -->
+  <div id="cookie-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
     <div class="modal-content glass-card cookie-modal-content">
-      <span class="close-modal" id="close-cookie-modal">&times;</span>
-      <h2 style="margin-bottom: 0.5rem;">Preferenze Cookie</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Seleziona le tipologie di cookie che desideri accettare.</p>
+      <span class="close-modal" id="close-cookie-modal" aria-label="Chiudi">&times;</span>
+      <h2 id="cookie-modal-title" style="margin-bottom: 0.5rem;">Gestisci Preferenze Cookie</h2>
+      <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Seleziona le categorie di cookie che desideri accettare. Il consenso può essere revocato in qualsiasi momento tramite il link "Gestisci Preferenze Cookie" nel footer.</p>
+      <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.5rem;">Titolare: Cocktail Kitchen, Piazza della Rinascita 40-41, Pescara. Email: <a href="mailto:info@cocktail-kitchen.it" style="color: var(--accent);">info@cocktail-kitchen.it</a> — <a href="cookie-policy.html" style="color: var(--accent);">Cookie Policy completa</a></p>
       
       <div class="cookie-option">
         <div class="cookie-info">
-          <strong>Cookie Tecnici (Necessari)</strong>
-          <p>Indispensabili per il funzionamento del sito. Non possono essere disabilitati.</p>
+          <strong>Cookie Tecnici (Sempre Attivi)</strong>
+          <p>Strettamente necessari per il funzionamento del sito (es. memorizzazione delle preferenze cookie). Non richiedono consenso ai sensi dell'art. 6 del Provvedimento Garante 2014.</p>
         </div>
         <div class="cookie-toggle">
           <input type="checkbox" id="cookie-tech" checked disabled>
@@ -286,8 +318,8 @@
 
       <div class="cookie-option">
         <div class="cookie-info">
-          <strong>Cookie di Terze Parti (Google Maps)</strong>
-          <p>Necessari per visualizzare la mappa interattiva nella sezione contatti.</p>
+          <strong>Cookie di Terze Parti (Google Maps &amp; Google Fonts)</strong>
+          <p>Utilizzati per visualizzare la mappa interattiva (Google Maps) e caricare i font tipografici (Google Fonts). Questi servizi possono trasmettere dati (incluso l'indirizzo IP) a Google LLC, USA. Base giuridica: consenso (art. 6.1.a GDPR).</p>
         </div>
         <div class="cookie-toggle">
           <input type="checkbox" id="cookie-third-party">
@@ -295,7 +327,10 @@
         </div>
       </div>
 
-      <button id="cookie-save-prefs" class="btn-primary full-width" style="margin-top: 1.5rem;">Salva Preferenze</button>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button id="cookie-reject-modal" class="btn-secondary" style="flex: 1;">Rifiuta Non Necessari</button>
+        <button id="cookie-save-prefs" class="btn-primary" style="flex: 1;">Salva Preferenze</button>
+      </div>
     </div>
   </div>
 

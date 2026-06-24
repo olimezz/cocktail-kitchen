@@ -579,14 +579,71 @@ a {
   color: #fff;
 }
 
-.menu-download-buttons {
+.menu-accordion-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
-.menu-download-buttons .btn-secondary {
-  text-align: center;
+/* Custom Scrollbar for Accordion */
+.menu-accordion-container::-webkit-scrollbar {
+  width: 6px;
+}
+.menu-accordion-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.menu-accordion-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.menu-accordion-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.menu-accordion-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-accordion-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.menu-accordion-btn .toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.menu-accordion-btn.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.menu-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  margin-top: 0;
+}
+
+.menu-accordion-content.open {
+  max-height: 3000px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.menu-preview-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: var(--glass-border);
+  display: block;
 }
 
 /* Navbar Action Buttons Visibility */
