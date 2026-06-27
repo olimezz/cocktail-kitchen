@@ -67,8 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const day = document.getElementById('book-day').value;
       const people = document.getElementById('book-people').value;
       const time = document.getElementById('book-time').value;
+      const requests = document.getElementById('book-requests').value.trim();
       
-      const message = `Ciao Cocktail Kitchen! Vorrei prenotare un tavolo.\n\n\u{1F464} Nome: ${name}\n\u{1F4C5} Giorno: ${day}\n\u{1F465} Persone: ${people}\n\u{1F552} Orario: ${time}`;
+      let message = `Ciao Cocktail Kitchen! Vorrei prenotare un tavolo.\n\n\u{1F464} Nome: ${name}\n\u{1F4C5} Giorno: ${day}\n\u{1F465} Persone: ${people}\n\u{1F552} Orario: ${time}`;
+      if (requests) {
+        message += `\n\u{1F4DD} Richieste Speciali: ${requests}`;
+      }
       const encodedMessage = encodeURIComponent(message);
       
       const whatsappUrl = `https://wa.me/393513798648?text=${encodedMessage}`;
