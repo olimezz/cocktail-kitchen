@@ -914,3 +914,85 @@ a {
 .map-placeholder.hidden {
   display: none;
 }
+
+/* Social Popup */
+.social-popup {
+  position: fixed;
+  bottom: 2rem;
+  right: -100%;
+  max-width: 300px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1000;
+  transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-popup.show {
+  right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .social-popup {
+    bottom: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  .social-popup.show {
+    right: 1rem;
+  }
+}
+
+.social-popup p {
+  font-weight: 600;
+  margin: 0;
+  font-size: 0.95rem;
+  text-align: center;
+  color: var(--text);
+  padding-right: 1rem; /* Space for close button */
+}
+
+.social-popup-icons {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.social-popup-icons a {
+  color: var(--text);
+  transition: color var(--transition), transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-popup-icons a:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.close-social-popup {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color var(--transition);
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-social-popup:hover {
+  color: var(--accent);
+}

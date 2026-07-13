@@ -355,5 +355,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCookieConsent();
 
-});
+  // --- Social Popup Logic ---
+  const socialPopup = document.getElementById('social-popup');
+  const closeSocialPopup = document.getElementById('close-social-popup');
 
+  if (socialPopup && closeSocialPopup) {
+    const hasSeenSocialPopup = sessionStorage.getItem('hasSeenSocialPopup');
+    
+    if (!hasSeenSocialPopup) {
+      setTimeout(() => {
+        socialPopup.classList.add('show');
+      }, 5000); // Mostra dopo 5 secondi
+    }
+
+    closeSocialPopup.addEventListener('click', () => {
+      socialPopup.classList.remove('show');
+      sessionStorage.setItem('hasSeenSocialPopup', 'true');
+    });
+  }
+
+});
