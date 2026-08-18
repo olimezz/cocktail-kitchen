@@ -221,6 +221,7 @@ a {
 .hero-logo {
   max-width: 280px;
   width: 100%;
+  height: auto;
   margin: 0 auto 1.5rem auto;
   display: block;
   animation: fadeInUp 1s ease both;
