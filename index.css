@@ -1,4 +1,4 @@
-:root {
+root {
   /* Color Palette */
   --bg-dark: #0a0a0c;
   --bg-surface: rgba(25, 25, 28, 0.6);
@@ -221,6 +221,7 @@ a {
 .hero-logo {
   max-width: 280px;
   width: 100%;
+  height: auto;
   margin: 0 auto 1.5rem auto;
   display: block;
   animation: fadeInUp 1s ease both;
@@ -996,3 +997,5 @@ a {
 .close-social-popup:hover {
   color: var(--accent);
 }
+
+
