@@ -252,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (consentObj.thirdParty) {
       loadGoogleFonts();
       loadGoogleMaps();
+      loadMetaPixel();
     }
   }
 
@@ -283,6 +284,12 @@ document.addEventListener('DOMContentLoaded', () => {
       mapIframe.src = mapIframe.dataset.src;
       mapIframe.classList.add('loaded');
       if (mapPlaceholder) mapPlaceholder.classList.add('hidden');
+    }
+  }
+
+  function loadMetaPixel() {
+    if (window.fbq) {
+      fbq('consent', 'grant');
     }
   }
 
