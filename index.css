@@ -742,6 +742,9 @@ a {
   display: flex;
   gap: 8px;
   z-index: 10;
+  max-width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .carousel-indicator {
