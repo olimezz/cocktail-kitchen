@@ -647,6 +647,10 @@ a {
   display: block;
 }
 
+.menu-accordion-content img + img {
+  margin-top: 1rem;
+}
+
 /* Navbar Action Buttons Visibility */
 #nav-action-btns {
   display: flex;
